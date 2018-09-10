@@ -16,12 +16,15 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'junegunn/fzf'
+Plug 'ncm2/ncm2'
 
 "" LaTeX
 Plug 'lervag/vimtex'
 
 "" Colours
 Plug 'iCyMind/NeoSolarized'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()            " required
 
@@ -33,13 +36,17 @@ aug reload_vimrc
 aug END
 
 "" }}}
+
 " Look and Feel {{{
 
 " Color scheme
 syntax enable
 let g:solarized_termcolors=256
 set background=dark
-colorscheme NeoSolarized
+
+if !exists("g:gui_oni")
+    colorscheme NeoSolarized
+endif
 
 " Curser and Number setting
 set number  " show line numbers
@@ -47,17 +54,15 @@ set cursorline
 set colorcolumn=80
 
 " }}}
+
 " Tests {{{
 
 " Reduce time out deylay
 set timeoutlen=1000 ttimeoutlen=0
 
 " }}}
+
 " General Settings {{{
-
-" Set shell to powershell
-"set shell=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-
 
 " Bind exiting the terminal
 tnoremap <c-[> <c-\><c-n> 
@@ -66,14 +71,17 @@ tnoremap <c-[> <c-\><c-n>
 " Abbreviations {{{
 
 :iabbrev @@ jakob@schmutz.co.uk
-:iabbrev @@w jakob.schmutz@apteco.co.uk
-
 
 " }}}
 
 "" Rebind <Leader> key
 nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
+
+" Make tabs appear as 4 spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 "" Quickly open .vimrc
 nnoremap <leader>v :e $MYVIMRC<cr>
@@ -95,10 +103,12 @@ function! SelectorOpenNewSplit(key, cmd)
 endfunction
 
 " Call the fuction bound to control movent keys
-nnoremap <silent> <c-w>k :call SelectorOpenNewSplit('k', 'leftabove split')<cr>
-nnoremap <silent> <c-w>j :call SelectorOpenNewSplit('j', 'leftabove split')<cr>
-nnoremap <silent> <c-w>h :call SelectorOpenNewSplit('h', 'leftabove vsplit')<cr>
-nnoremap <silent> <c-w>l :call SelectorOpenNewSplit('l', 'leftabove vsplit')<cr>
+if !exists("g:gui_oni")
+    nnoremap <silent> <c-w>k :call SelectorOpenNewSplit('k', 'leftabove split')<cr>
+    nnoremap <silent> <c-w>j :call SelectorOpenNewSplit('j', 'leftabove split')<cr>
+    nnoremap <silent> <c-w>h :call SelectorOpenNewSplit('h', 'leftabove vsplit')<cr>
+    nnoremap <silent> <c-w>l :call SelectorOpenNewSplit('l', 'leftabove vsplit')<cr>
+endif
 
 " grow/shrink
 call submode#enter_with('grow/shrink', 'n', '', '<C-w>+', '<C-w>+')
@@ -122,7 +132,23 @@ set smartcase
 nnoremap <leader>, :nohl<cr>
 
 " }}}
+
 " Plugin Settings {{{
+
+" Language Server {{{
+
+" required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_autoStart = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'go': ['go-langserver'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" }}}
 
 " VimTex {{{
 let g:vimtex_view_method = 'mupdf'
@@ -182,6 +208,15 @@ aug END
 
 " }}}
 
+" Go Settings {{{
+
+aug detect_go_files
+    au!
+    au BufRead,BufNewFile *.go, set filetype=go
+aug END
+
+" }}}
+
 " R Settings {{{
 
 " some settings to make R easier to work with
@@ -205,7 +240,9 @@ aug spell_checkMd
     au!
     au filetype markdown setlocal spell
 aug END
+
 " }}}
+
 " Octave Setttings {{{
 
 
@@ -223,6 +260,7 @@ aug END
 
 
 " }}}
+
 " LeTeX Settings {{{
 
 " Set filetype
@@ -254,13 +292,13 @@ aug nav_bindings
 		\inoremap ;gui <++>
 aug END
 " }}}
+
 " Java Settings {{{
 
 " Compile code
 aug compiling
     au!
-    au FileType java nnoremap <F5> :w!<cr>:!javac %<cr>
-    au FileType java nnoremap <F6> :! javac %:r<cr>
+    au FileType java nnoremap <F6> :w!<cr>:!javac %<cr>
 aug END
 
 
