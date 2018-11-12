@@ -57,8 +57,7 @@ set colorcolumn=80
 
 " Tests {{{
 
-" Reduce time out deylay
-set timeoutlen=1000 ttimeoutlen=0
+set undofile
 
 " }}}
 
@@ -67,6 +66,8 @@ set timeoutlen=1000 ttimeoutlen=0
 " Bind exiting the terminal
 tnoremap <c-[> <c-\><c-n> 
 
+" Reduce time out deylay
+set timeoutlen=1000 ttimeoutlen=0
 
 " Abbreviations {{{
 
@@ -87,9 +88,9 @@ set shiftwidth=4
 nnoremap <leader>v :e $MYVIMRC<cr>
 
 "" File commands
-noremap <Leader>q :q<CR>  " Quit current window
+noremap <Leader>q :q<CR>      " Quit current window
 noremap <Leader>Q :wqa!<CR>   " Quit all windows
-noremap <leader>w :w<cr>
+noremap <leader>w :up!<cr>    " Update Buffer
 
 " Super easy split management {{{
 " Fuction to check if a split exits in a given direction and open one if not
@@ -145,6 +146,8 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'go': ['go-langserver'],
+    \ 'java': ['/usr/local/bin/jdtls'],
+    \ 'haskell': ['hie-wrapper'],
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -234,6 +237,27 @@ aug END
 
 " }}}
 
+" Haskell Settings {{{
+
+aug detect_haskell_files
+    au!
+    au BufRead,BufNewFile *.hs, set filetype=haskell
+aug END
+
+" some settings to make Haskell easier to work with
+aug hsSetting
+	au!
+	au filetype haskell setlocal tabstop=8
+	au filetype haskell setlocal softtabstop=4
+	au filetype haskell setlocal shiftwidth=4
+	au filetype haskell setlocal expandtab
+	au filetype haskell setlocal autoindent
+	au filetype haskell setlocal fileformat=unix
+	au filetype haskell setlocal colorcolumn=80
+aug END
+
+" }}}
+
 " Markdown Settings {{{
 
 aug spell_checkMd
@@ -282,15 +306,6 @@ aug auto_compile_Tex
 	au FileType tex noremap <F5> :NeomakeSh mupdf %:r.pdf<cr>
 aug END
 
-" Navigating with guides
-aug nav_bindings
-	au!
-	au Filetype tex
-		\inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-		\vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-		\map <Space><Tab> <Esc>/<++><Enter>"_c4l
-		\inoremap ;gui <++>
-aug END
 " }}}
 
 " Java Settings {{{
@@ -303,4 +318,3 @@ aug END
 
 
 " }}}
-
