@@ -10,6 +10,7 @@ call plug#begin()
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-submode'
+Plug 'neomake/neomake'
 
 "" lsp
 Plug 'autozimu/LanguageClient-neovim', {
@@ -57,7 +58,6 @@ set colorcolumn=80
 
 " Tests {{{
 
-set undofile
 
 " }}}
 
@@ -132,6 +132,8 @@ set ignorecase
 set smartcase
 nnoremap <leader>, :nohl<cr>
 
+" permenant undo in all buffers
+set undofile
 " }}}
 
 " Plugin Settings {{{
@@ -206,7 +208,7 @@ aug END
 " Run python script
 aug runscript
 	au!
-	au FileType python nnoremap <silent><leader>fs :w!<cr>:!python3 %<cr>
+	au FileType python nnoremap <silent><leader>fs :up!<cr>:!python3 %<cr>
 aug END
 
 " }}}
@@ -304,6 +306,27 @@ aug auto_compile_Tex
 	au!
 	au Filetype tex noremap <F6> :NeomakeSh latexmk -cd -pdf %<cr>
 	au FileType tex noremap <F5> :NeomakeSh mupdf %:r.pdf<cr>
+aug END
+
+" }}}
+
+" Groff Settings {{{
+
+" Set filetype
+au BufNewFile,BufRead *.mom set filetype=groff
+au BufNewFile,BufRead *.ms set filetype=groff
+
+" Spell check and formatting in groff files
+aug spell_checkTeX
+    au!
+    au Filetype groff setlocal spell
+    au Filetype groff setlocal tw=79
+aug END
+
+aug createPDF
+	au!
+	au Filetype groff noremap <silent><leader>ms :up!<cr>:!groff -ms % \| ps2pdf - %:r.pdf<cr>
+	au Filetype groff noremap <silent><leader>mom :up!<cr>:!groff -mom % \| ps2pdf - %:r.pdf<cr>
 aug END
 
 " }}}
