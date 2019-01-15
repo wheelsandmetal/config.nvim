@@ -25,7 +25,6 @@ Plug 'lervag/vimtex'
 
 "" Colours
 Plug 'iCyMind/NeoSolarized'
-Plug 'joshdick/onedark.vim'
 
 call plug#end()            " required
 
@@ -77,7 +76,10 @@ set timeoutlen=1000 ttimeoutlen=0
 
 "" Rebind <Leader> key
 nnoremap <Space> <NOP>
-let mapleader = "\<Space>"
+nnoremap ; <NOP>
+let mapleader = ";"
+nnoremap . ;
+nnoremap <Space> .
 
 " Make tabs appear as 4 spaces
 set tabstop=4
