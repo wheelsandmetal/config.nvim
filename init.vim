@@ -78,6 +78,7 @@ set timeoutlen=1000 ttimeoutlen=0
 nnoremap <Space> <NOP>
 nnoremap ; <NOP>
 let mapleader = ";"
+let maplocalleader = "\\"
 nnoremap . ;
 nnoremap <Space> .
 
@@ -136,6 +137,7 @@ nnoremap <leader>, :nohl<cr>
 
 " permenant undo in all buffers
 set undofile
+
 " }}}
 
 " Plugin Settings {{{
