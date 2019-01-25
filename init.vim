@@ -57,6 +57,15 @@ set colorcolumn=80
 
 " Tests {{{
 
+"" Allow applying macros to visual selection
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+	echo "@".getcmdline()
+	execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+"" Highlight word under cursor
+nnoremap + *N
 
 " }}}
 
@@ -302,10 +311,6 @@ aug spell_checkTeX
     au BufRead,BufNewFile *.tex setlocal spell
 aug END
 
-" Compile with latexmk cont feature
-" Make sure latexmkrc has
-" $pdf_update_method = 2;
-" $pdf_previewer = 'mupdf';
 aug auto_compile_Tex
 	au!
 	au Filetype tex noremap <F6> :NeomakeSh latexmk -cd -pdf %<cr>
