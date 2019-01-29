@@ -1,8 +1,8 @@
 " vim:fdm=marker
 
 " vim-plug Setting {{{
-"" github.com/junegunn/vim-plug
-"" To install use :PlugInstall
+" github.com/junegunn/vim-plug
+" To install use :PlugInstall
 set nocompatible
 
 call plug#begin()
@@ -12,7 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'kana/vim-submode'
 Plug 'neomake/neomake'
 
-"" lsp
+" lsp
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -20,22 +20,22 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 Plug 'ncm2/ncm2'
 
-"" LaTeX
+" LaTeX
 Plug 'lervag/vimtex'
 
-"" Colours
+" Colours
 Plug 'iCyMind/NeoSolarized'
 
 call plug#end()            " required
 
 
-"" Automatic reloading of .vimrc
+" Automatic reloading of .vimrc
 aug reload_vimrc
     au!
     au bufwritepost $MYVIMRC :source $MYVIMRC
 aug END
 
-"" }}}
+" }}}
 
 " Look and Feel {{{
 
@@ -57,15 +57,13 @@ set colorcolumn=80
 
 " Tests {{{
 
-"" Allow applying macros to visual selection
+" Allow applying macros to visual selection
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
 	execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-"" Highlight word under cursor
-nnoremap + *N
 
 " }}}
 
@@ -83,7 +81,7 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " }}}
 
-"" Rebind <Leader> key
+" Rebind <Leader> key
 nnoremap <Space> <NOP>
 nnoremap ; <NOP>
 let mapleader = ";"
@@ -96,10 +94,10 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-"" Quickly open .vimrc
+" Quickly open .vimrc
 nnoremap <leader>v :e $MYVIMRC<cr>
 
-"" File commands
+" File commands
 noremap <Leader>q :q<CR>      " Quit current window
 noremap <Leader>Q :wqa!<CR>   " Quit all windows
 noremap <leader>w :up!<cr>    " Update Buffer
@@ -147,6 +145,9 @@ nnoremap <leader>, :nohl<cr>
 " permenant undo in all buffers
 set undofile
 
+" Highlight word under cursor
+nnoremap + *N
+
 " }}}
 
 " Plugin Settings {{{
@@ -187,16 +188,16 @@ let g:vimtex_view_method = 'mupdf'
 "	\}
 "let g:vimtex_view_automatic = 1
 
-"" }}}
+" }}}
 
 " Goyo {{{
 
-"" Toggle Goyo
+" Toggle Goyo
 nnoremap <leader>g :Goyo<cr>
 
 " }}}
 
-"" }}}
+" }}}
 
 " Python Settings {{{
 
