@@ -335,10 +335,19 @@ aug END
 
 aug createPDF
 	au!
-	au Filetype groff noremap <silent><leader>ms :up!<cr>:!groff -ms % \| ps2pdf - %:r.pdf<cr>
-	au Filetype groff noremap <silent><leader>mom :up!<cr>:!groff -mom % \| ps2pdf - %:r.pdf<cr>
+	au Filetype groff noremap <leader>fs :call CompileGroffFile()<cr>
 aug END
 
+function! CompileGroffFile()
+	let ext = expand("%:e")
+	if ext == "ms"
+		execute "up!"
+		execute "!groff -ms" expand("%") "\| ps2pdf -" expand("%:r") . ".pdf"
+	elseif ext == "mom"
+		execute "up!"
+		execute "!groff -mom" expand("%") "\| ps2pdf -" expand("%:r") . ".pdf"
+	endif
+endfunction
 " }}}
 
 " Java Settings {{{
