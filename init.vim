@@ -147,6 +147,9 @@ set undofile
 
 " Highlight word under cursor
 nnoremap + *N
+" Change word under cursor
+nnoremap c* *Ncgn
+nnoremap c# #NcgN
 
 " }}}
 
