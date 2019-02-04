@@ -256,6 +256,19 @@ aug END
 
 " }}}
 
+" {{{ C/C++ Settings
+
+aug CSetting
+	au!
+	au filetype c setlocal autoindent
+	au filetype c setlocal smartindent
+	au filetype c setlocal tabstop=4
+	au filetype c setlocal shiftwidth=4
+	au filetype c setlocal expandtab  
+aug END
+
+" }}}
+
 " Haskell Settings {{{
 
 aug detect_haskell_files
