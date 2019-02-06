@@ -95,7 +95,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Quickly open .vimrc
-nnoremap <leader>v :e $MYVIMRC<cr>
+nnoremap <leader>cfv :e $MYVIMRC<cr>
 
 " File commands
 noremap <Leader>q :q<CR>      " Quit current window
