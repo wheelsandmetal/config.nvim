@@ -12,14 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'kana/vim-submode'
 Plug 'neomake/neomake'
 
-" lsp
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'junegunn/fzf'
-Plug 'ncm2/ncm2'
-
 " LaTeX
 Plug 'lervag/vimtex'
 
@@ -63,7 +55,6 @@ function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
 	execute ":'<,'>normal @".nr2char(getchar())
 endfunction
-
 
 " }}}
 
@@ -155,23 +146,6 @@ nnoremap c# #NcgN
 
 " Plugin Settings {{{
 
-" Language Server {{{
-
-" required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_autoStart = 1
-
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'go': ['go-langserver'],
-    \ 'java': ['/usr/local/bin/jdtls'],
-    \ 'haskell': ['hie-wrapper'],
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" }}}
-
 " VimTex {{{
 let g:vimtex_view_method = 'mupdf'
 "let g:vimtex_compiler_latexmk = {
@@ -225,7 +199,7 @@ aug END
 " Run python script
 aug runscript
 	au!
-	au FileType python nnoremap <silent><leader>fs :up!<cr>:!python3 %<cr>
+	au FileType python nnoremap <silent><leader>fa :up!<cr>:!python3 %<cr>
 aug END
 
 " }}}
@@ -301,7 +275,6 @@ aug END
 
 " Octave Setttings {{{
 
-
 " .m files are "octave" files
 aug detect_octave_files
     au!
@@ -351,7 +324,7 @@ aug END
 
 aug createPDF
 	au!
-	au Filetype groff noremap <leader>fs :call CompileGroffFile()<cr>
+	au Filetype groff noremap <leader>fa :call CompileGroffFile()<cr>
 aug END
 
 function! CompileGroffFile()
@@ -364,6 +337,7 @@ function! CompileGroffFile()
 		execute "!groff -mom" expand("%") "\| ps2pdf -" expand("%:r") . ".pdf"
 	endif
 endfunction
+
 " }}}
 
 " Java Settings {{{
