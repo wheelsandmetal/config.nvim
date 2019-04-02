@@ -80,6 +80,12 @@ let maplocalleader = "\\"
 nnoremap . ;
 nnoremap <Space> .
 
+" j,k move by visual lines, gj gk move by actual lines
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j 
+nnoremap gk k
+
 " Make tabs appear as 4 spaces
 set tabstop=4
 set softtabstop=4
@@ -89,9 +95,9 @@ set shiftwidth=4
 nnoremap <leader>cfv :e $MYVIMRC<cr>
 
 " File commands
-noremap <Leader>q :q<CR>      " Quit current window
-noremap <Leader>Q :wqa!<CR>   " Quit all windows
-noremap <leader>w :up!<cr>    " Update Buffer
+nnoremap <Leader>q :q<CR>      " Quit current window
+nnoremap <Leader>Q :wqa!<CR>   " Quit all windows
+nnoremap <leader>w :up!<cr>    " Update Buffer
 
 " Super easy split management {{{
 " Fuction to check if a split exits in a given direction and open one if not
@@ -298,7 +304,7 @@ au BufNewFile,BufRead *.tex set filetype=tex
 " Spell check in .tex files
 aug spell_checkTeX
     au!
-    au BufRead,BufNewFile *.tex setlocal spell
+    au Filetype tex setlocal spell
 aug END
 
 aug auto_compile_Tex
