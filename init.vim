@@ -207,7 +207,7 @@ aug END
 " Run python script
 aug runscript
 	au!
-	au FileType python nnoremap <silent><leader>fa :up!<cr>:!python3 %<cr>
+	au FileType python nnoremap <buffer><silent> <leader>fa :up!<cr>:!python3 %<cr>
 aug END
 
 " }}}
@@ -332,7 +332,7 @@ aug END
 
 aug createPDF
 	au!
-	au Filetype groff noremap <leader>fa :call CompileGroffFile()<cr>
+	au Filetype groff noremap <buffer> <leader>fa :call CompileGroffFile()<cr>
 aug END
 
 function! CompileGroffFile()
