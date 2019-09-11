@@ -182,6 +182,8 @@ nnoremap <leader>g :Goyo<cr>
 
 " }}}
 
+" Language Settting {{{
+
 " Python Settings {{{
 
 " Point neovim at python3 env
@@ -351,8 +353,16 @@ endfunction
 " Compile code
 aug compiling
     au!
-    au FileType java nnoremap <F6> :w!<cr>:!javac %<cr>
+    au FileType java nnoremap <buffer> <F6> :w!<cr>:!javac %<cr>
 aug END
 
+
+" }}}
+
+" crontab {{{
+
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+" }}}
 
 " }}}
