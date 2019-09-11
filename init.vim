@@ -18,6 +18,13 @@ Plug 'lervag/vimtex'
 " Colours
 Plug 'iCyMind/NeoSolarized'
 
+" lsp
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
 call plug#end()            " required
 
 
@@ -147,6 +154,23 @@ nnoremap + *N
 " Change word under cursor
 nnoremap c* *Ncgn
 nnoremap c# #NcgN
+
+" }}}
+
+" lsp {{{
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['tcp://127.0.0.1:2090']
+    \ }
+
+
+autocmd FileType * call LanguageClientMaps()
+
+function! LanguageClientMaps()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+	endif
+endfunction
 
 " }}}
 
