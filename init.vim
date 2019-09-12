@@ -28,6 +28,13 @@ Plug 'elzr/vim-json'
 " Colours
 Plug 'iCyMind/NeoSolarized'
 
+" lsp
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
 call plug#end()            " required
 
 
@@ -163,6 +170,23 @@ nnoremap c# #NcgN
 
 " }}}
 
+" lsp {{{
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['tcp://127.0.0.1:2090']
+    \ }
+
+
+autocmd FileType * call LanguageClientMaps()
+
+function! LanguageClientMaps()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+	endif
+endfunction
+
+" }}}
+
 " Plugin Settings {{{
 
 " VimTex {{{
@@ -195,6 +219,8 @@ nnoremap <leader>g :Goyo<cr>
 
 " }}}
 
+" Language Settting {{{
+
 " Python Settings {{{
 
 " Point neovim at python3 env
@@ -219,7 +245,7 @@ aug END
 " Run python script
 aug runscript
 	au!
-	au FileType python nnoremap <silent><leader>fa :up!<cr>:!python3 %<cr>
+	au FileType python nnoremap <buffer><silent> <leader>fa :up!<cr>:!python3 %<cr>
 aug END
 
 " }}}
@@ -344,7 +370,7 @@ aug END
 
 aug createPDF
 	au!
-	au Filetype groff noremap <leader>fa :call CompileGroffFile()<cr>
+	au Filetype groff noremap <buffer> <leader>fa :call CompileGroffFile()<cr>
 aug END
 
 function! CompileGroffFile()
@@ -365,8 +391,16 @@ endfunction
 " Compile code
 aug compiling
     au!
-    au FileType java nnoremap <F6> :w!<cr>:!javac %<cr>
+    au FileType java nnoremap <buffer> <F6> :w!<cr>:!javac %<cr>
 aug END
 
+
+" }}}
+
+" crontab {{{
+
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+" }}}
 
 " }}}
