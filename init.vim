@@ -3,8 +3,15 @@
 " vim-plug Setting {{{
 " github.com/junegunn/vim-plug
 " To install use :PlugInstall
-set nocompatible
 
+" Should auto install vim-plug
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+set nocompatible
 call plug#begin()
 
 Plug 'junegunn/goyo.vim'
@@ -15,6 +22,9 @@ Plug 'neomake/neomake'
 
 " LaTeX
 Plug 'lervag/vimtex'
+
+" JSON
+Plug 'elzr/vim-json'
 
 " Colours
 Plug 'iCyMind/NeoSolarized'
@@ -63,6 +73,9 @@ function! ExecuteMacroOverVisualRange()
 	echo "@".getcmdline()
 	execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+" Look for tags file up and up and up ...
+set tags=./TAGS,TAGS;
 
 " }}}
 
@@ -227,11 +240,12 @@ aug pythonSetting
 	au filetype python setlocal softtabstop=4
 	au filetype python setlocal shiftwidth=4
 	au filetype python setlocal textwidth=79
-	au filetype python setlocal expandtab
+	au filetype python setlocal noexpandtab
 	au filetype python setlocal autoindent
 	au filetype python setlocal fileformat=unix
 	au filetype python setlocal colorcolumn=80
 aug END
+
 
 " Run python script
 aug runscript
