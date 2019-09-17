@@ -9,6 +9,7 @@ call plug#begin()
 
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'kana/vim-submode'
 Plug 'neomake/neomake'
 
@@ -163,12 +164,16 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['tcp://127.0.0.1:2090']
     \ }
 
-
 autocmd FileType * call LanguageClientMaps()
 
 function! LanguageClientMaps()
 	if has_key(g:LanguageClient_serverCommands, &filetype)
 		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <buffer> <silent> <leader>rn :call LanguageClient#textDocument_rename()<CR>
+		nnoremap <buffer> <silent> <leader>rc :call LanguageClient#textDocument_rename({'newName': Abolish.camelcase(expand('<cword>'))})<CR>
+		nnoremap <buffer> <silent> <leader>rs :call LanguageClient#textDocument_rename({'newName': Abolish.snakecase(expand('<cword>'))})<CR>
+		nnoremap <buffer> <silent> <leader>ru :call LanguageClient#textDocument_rename({'newName': Abolish.uppercase(expand('<cword>'))})<CR>
 	endif
 endfunction
 
