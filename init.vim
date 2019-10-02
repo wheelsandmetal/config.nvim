@@ -17,6 +17,7 @@ call plug#begin()
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
 Plug 'kana/vim-submode'
 Plug 'neomake/neomake'
 
