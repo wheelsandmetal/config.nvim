@@ -96,6 +96,9 @@ set tags=./TAGS,TAGS;
 
 " General Settings {{{
 
+" Switch buffers without having to write
+set hidden
+
 " Bind exiting the terminal
 tnoremap <c-[> <c-\><c-n> 
 
