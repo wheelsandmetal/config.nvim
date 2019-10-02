@@ -38,6 +38,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()            " required
 
