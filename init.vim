@@ -201,6 +201,7 @@ function! LanguageClientMaps()
 	if has_key(g:LanguageClient_serverCommands, &filetype)
 		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
 		nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <buffer> <silent> <leader>fr :call LanguageClient#textDocument_references()<cr>
 		nnoremap <buffer> <silent> <leader>rn :call LanguageClient#textDocument_rename()<CR>
 		nnoremap <buffer> <silent> <leader>rc :call LanguageClient#textDocument_rename({'newName': Abolish.camelcase(expand('<cword>'))})<CR>
 		nnoremap <buffer> <silent> <leader>rs :call LanguageClient#textDocument_rename({'newName': Abolish.snakecase(expand('<cword>'))})<CR>
