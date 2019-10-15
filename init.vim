@@ -198,10 +198,10 @@ function! LanguageClientMaps()
 		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
 		nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
 		nnoremap <buffer> <silent> <leader>fr :call LanguageClient#textDocument_references()<cr>
-		nnoremap <buffer> <silent> <leader>rn :call LanguageClient#textDocument_rename()<CR>
-		nnoremap <buffer> <silent> <leader>rc :call LanguageClient#textDocument_rename({'newName': Abolish.camelcase(expand('<cword>'))})<CR>
-		nnoremap <buffer> <silent> <leader>rs :call LanguageClient#textDocument_rename({'newName': Abolish.snakecase(expand('<cword>'))})<CR>
-		nnoremap <buffer> <silent> <leader>ru :call LanguageClient#textDocument_rename({'newName': Abolish.uppercase(expand('<cword>'))})<CR>
+		nnoremap <buffer> <silent> <leader>rn :w<CR>:call LanguageClient#textDocument_rename()<CR>:w<CR>
+		nnoremap <buffer> <silent> <leader>rc :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.camelcase(expand('<cword>'))})<CR>:w<CR>
+		nnoremap <buffer> <silent> <leader>rs :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.snakecase(expand('<cword>'))})<CR>:w<CR>
+		nnoremap <buffer> <silent> <leader>ru :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.uppercase(expand('<cword>'))})<CR>:w<CR>
 	endif
 endfunction
 
