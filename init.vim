@@ -254,7 +254,6 @@ aug pythonSetting
 	au filetype python setlocal tabstop=4
 	au filetype python setlocal softtabstop=4
 	au filetype python setlocal shiftwidth=4
-	au filetype python setlocal textwidth=79
 	au filetype python setlocal noexpandtab
 	au filetype python setlocal autoindent
 	au filetype python setlocal fileformat=unix
