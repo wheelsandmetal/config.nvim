@@ -134,11 +134,6 @@ set shiftwidth=4
 " Quickly open .vimrc
 nnoremap <leader>cfv :e $MYVIMRC<cr>
 
-" File commands
-nnoremap <Leader>q :q<CR>      " Quit current window
-nnoremap <Leader>Q :wqa!<CR>   " Quit all windows
-nnoremap <leader>w :up!<cr>    " Update Buffer
-
 " Super easy split management {{{
 " Fuction to check if a split exits in a given direction and open one if not
 function! SelectorOpenNewSplit(key, cmd)
