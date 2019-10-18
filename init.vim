@@ -187,7 +187,7 @@ nnoremap c# #NcgN
 " lsp {{{
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['tcp://127.0.0.1:2090']
+    \ 'python': ['~/.config/lsp/pyls/env/bin/python', '-m', 'pyls', '-v']
     \ }
 
 autocmd FileType * call LanguageClientMaps()
