@@ -14,12 +14,11 @@ endif
 set nocompatible
 call plug#begin()
 
-Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
+
 Plug 'kana/vim-submode'
-Plug 'neomake/neomake'
 
 " LaTeX
 Plug 'lervag/vimtex'
@@ -227,13 +226,6 @@ let g:vimtex_view_method = 'mupdf'
 "	\ ],
 "	\}
 "let g:vimtex_view_automatic = 1
-
-" }}}
-
-" Goyo {{{
-
-" Toggle Goyo
-nnoremap <leader>g :Goyo<cr>
 
 " }}}
 
