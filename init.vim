@@ -21,6 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'kana/vim-submode'
+Plug 'wellle/targets.vim'
 
 " LaTeX
 Plug 'lervag/vimtex'
