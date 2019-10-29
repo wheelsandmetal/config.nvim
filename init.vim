@@ -115,6 +115,7 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " Rebind <Leader> key
 nnoremap <Space> <NOP>
+nnoremap . <NOP>
 nnoremap ; <NOP>
 let mapleader = ";"
 let maplocalleader = "\\"
