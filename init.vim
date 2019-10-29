@@ -23,6 +23,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'kana/vim-submode'
 Plug 'wellle/targets.vim'
 
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+
 " LaTeX
 Plug 'lervag/vimtex'
 
@@ -230,6 +234,21 @@ let g:vimtex_view_method = 'mupdf'
 "	\ ],
 "	\}
 "let g:vimtex_view_automatic = 1
+
+" }}}
+
+" ncm2 {{{
+
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
+
+" Affects the visual representation of what happens after you hit <C-x><C-o>
+" https://neovim.io/doc/user/insert.html#i_CTRL-X_CTRL-O
+" https://neovim.io/doc/user/options.html#'completeopt'
+"
+" This will show the popup menu even if there's only one match (menuone),
+" prevent automatic selection (noselect) and prevent automatic text injection
+" into the current line (noinsert).
+set completeopt=noinsert,menuone,noselect
 
 " }}}
 
