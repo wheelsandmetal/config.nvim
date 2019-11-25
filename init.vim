@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sleuth'
 
 Plug 'kana/vim-submode'
 Plug 'wellle/targets.vim'
@@ -251,6 +252,7 @@ set completeopt=noinsert,menuone,noselect
 
 " }}}
 
+
 " }}}
 
 " Language Settting {{{
@@ -265,11 +267,6 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " some settings to make python easier to work with
 aug pythonSetting
 	au!
-	au filetype python setlocal tabstop=4
-	au filetype python setlocal softtabstop=4
-	au filetype python setlocal shiftwidth=4
-	au filetype python setlocal noexpandtab
-	au filetype python setlocal autoindent
 	au filetype python setlocal fileformat=unix
 	au filetype python setlocal colorcolumn=80
 aug END
@@ -297,12 +294,6 @@ aug END
 " some settings to make R easier to work with
 aug RSetting
 	au!
-	au filetype r setlocal tabstop=2
-	au filetype r setlocal softtabstop=2
-	au filetype r setlocal shiftwidth=2
-	au filetype r setlocal textwidth=79
-	au filetype r setlocal expandtab
-	au filetype r setlocal autoindent
 	au filetype r setlocal fileformat=unix
 	au filetype r setlocal colorcolumn=80
 aug END
@@ -313,11 +304,6 @@ aug END
 
 aug CSetting
 	au!
-	au filetype c setlocal autoindent
-	au filetype c setlocal smartindent
-	au filetype c setlocal tabstop=4
-	au filetype c setlocal shiftwidth=4
-	au filetype c setlocal expandtab  
 aug END
 
 " }}}
@@ -332,11 +318,6 @@ aug END
 " some settings to make Haskell easier to work with
 aug hsSetting
 	au!
-	au filetype haskell setlocal tabstop=8
-	au filetype haskell setlocal softtabstop=4
-	au filetype haskell setlocal shiftwidth=4
-	au filetype haskell setlocal expandtab
-	au filetype haskell setlocal autoindent
 	au filetype haskell setlocal fileformat=unix
 	au filetype haskell setlocal colorcolumn=80
 aug END
