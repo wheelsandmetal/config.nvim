@@ -135,10 +135,8 @@ nnoremap k gk
 nnoremap gj j 
 nnoremap gk k
 
-" Make tabs appear as 4 spaces
+" Make tabs appear as 4 spaces, sleuth does the rest
 set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 
 " Quickly open .vimrc
 nnoremap <leader>cfv :e $MYVIMRC<cr>
