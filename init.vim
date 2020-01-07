@@ -278,12 +278,6 @@ aug pythonSetting
 aug END
 
 
-" Run python script
-aug runscript
-	au!
-	au FileType python nnoremap <buffer><silent> <leader>fa :up!<cr>:!python3 %<cr>
-aug END
-
 " }}}
 
 " Go Settings {{{
