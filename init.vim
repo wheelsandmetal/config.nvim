@@ -263,6 +263,12 @@ set completeopt=noinsert,menuone,noselect
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 
+" Turns off this. The tabstop was super annoying
+""if !exists("g:python_recommended_style") || g:python_recommended_style != 0
+""    " As suggested by PEP8.
+""    setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8
+""endif
+let g:python_recommended_style = 0
 
 " some settings to make python easier to work with
 aug pythonSetting
