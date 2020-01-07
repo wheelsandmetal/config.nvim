@@ -81,7 +81,8 @@ if (empty($TMUX))
 endif
 
 " Curser and Number setting
-set number  " show line numbers
+set number
+set relativenumber
 set cursorline
 set colorcolumn=80
 
