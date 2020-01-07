@@ -85,6 +85,7 @@ set number
 set relativenumber
 set cursorline
 set colorcolumn=80
+highlight ColorColumn guibg=red
 
 " }}}
 
