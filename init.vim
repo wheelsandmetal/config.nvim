@@ -179,7 +179,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-nnoremap <leader>, :nohl<cr>
+nnoremap <silent> <leader>, :nohl<cr>
 
 " permenant undo in all buffers
 set undofile
