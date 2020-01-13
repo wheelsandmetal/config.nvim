@@ -39,11 +39,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 
 " lsp
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
+Plug 'neovim/nvim-lsp'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()            " required
@@ -194,23 +190,36 @@ nnoremap c# #NcgN
 
 " lsp {{{
 
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['~/.config/lsp/pyls/env/bin/python', '-m', 'pyls', '-v']
-    \ }
+lua << EOF
+local nvim_lsp = require'nvim_lsp'
+nvim_lsp.pyls.setup{
+  cmd = {'/home/jakob/.config/lsp/pyls/env/bin/python', '-m', 'pyls'};
+}
+nvim_lsp.ccls.setup{
+  cmd = {'/home/jakob/repos/ccls/Release/ccls'};
+}
+EOF
 
-autocmd FileType * call LanguageClientMaps()
+function LspMapping()
+  nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+  nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+  nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+  nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+  nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<cr>
+  nnoremap <silent> <leader>rn :w<CR><cmd>lua vim.lsp.buf.rename()<CR>:w<CR>
+  nnoremap <silent> <leader>rc :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.camelcase(expand('<cword>'))})<CR>:w<CR>
+  nnoremap <silent> <leader>rs :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.snakecase(expand('<cword>'))})<CR>:w<CR>
+  nnoremap <silent> <leader>ru :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.uppercase(expand('<cword>'))})<CR>:w<CR>
+  set omnifunc=lsp#omnifunc
+endfunction()
 
-function! LanguageClientMaps()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-		nnoremap <buffer> <silent> <leader>fr :call LanguageClient#textDocument_references()<cr>
-		nnoremap <buffer> <silent> <leader>rn :w<CR>:call LanguageClient#textDocument_rename()<CR>:w<CR>
-		nnoremap <buffer> <silent> <leader>rc :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.camelcase(expand('<cword>'))})<CR>:w<CR>
-		nnoremap <buffer> <silent> <leader>rs :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.snakecase(expand('<cword>'))})<CR>:w<CR>
-		nnoremap <buffer> <silent> <leader>ru :w<CR>:call LanguageClient#textDocument_rename({'newName': Abolish.uppercase(expand('<cword>'))})<CR>:w<CR>
-	endif
-endfunction
+aug lsp_mappings
+  au!
+  au filetype python call LspMapping()
+  au filetype cpp call LspMapping()
+aug END
 
 " }}}
 
