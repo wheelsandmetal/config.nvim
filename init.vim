@@ -97,6 +97,7 @@ endfunction
 " Look for tags file up and up and up ...
 set tags=./TAGS,TAGS,./tags,tags;
 
+autocmd FileType erlang setlocal iskeyword+=:
 " }}}
 
 " General Settings {{{
@@ -208,10 +209,10 @@ function LspMapping()
   nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
   nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
   nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<cr>
-  nnoremap <silent> <leader>rn :w<CR><cmd>lua vim.lsp.buf.rename()<CR>:w<CR>
-  nnoremap <silent> <leader>rc :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.camelcase(expand('<cword>'))})<CR>:w<CR>
-  nnoremap <silent> <leader>rs :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.snakecase(expand('<cword>'))})<CR>:w<CR>
-  nnoremap <silent> <leader>ru :w<CR><cmd>lua vim.lsp.buf.rename({'new_name': Abolish.uppercase(expand('<cword>'))})<CR>:w<CR>
+  nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+  nnoremap <silent> <leader>rc <cmd>lua vim.lsp.buf.rename({'new_name': Abolish.camelcase(expand('<cword>'))})<CR>
+  nnoremap <silent> <leader>rs <cmd>lua vim.lsp.buf.rename({'new_name': Abolish.snakecase(expand('<cword>'))})<CR>
+  nnoremap <silent> <leader>ru <cmd>lua vim.lsp.buf.rename({'new_name': Abolish.uppercase(expand('<cword>'))})<CR>
   set omnifunc=lsp#omnifunc
 endfunction()
 
@@ -248,7 +249,7 @@ let g:vimtex_view_method = 'mupdf'
 
 " ncm2 {{{
 
-autocmd BufEnter  *  call ncm2#enable_for_buffer()
+"autocmd BufEnter  *  call ncm2#enable_for_buffer()
 
 " Affects the visual representation of what happens after you hit <C-x><C-o>
 " https://neovim.io/doc/user/insert.html#i_CTRL-X_CTRL-O
@@ -257,7 +258,7 @@ autocmd BufEnter  *  call ncm2#enable_for_buffer()
 " This will show the popup menu even if there's only one match (menuone),
 " prevent automatic selection (noselect) and prevent automatic text injection
 " into the current line (noinsert).
-set completeopt=noinsert,menuone,noselect
+"set completeopt=noinsert,menuone,noselect
 
 " }}}
 
@@ -269,7 +270,7 @@ set completeopt=noinsert,menuone,noselect
 " Python Settings {{{
 
 " Point neovim at python3 env
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 
 
 " Turns off this. The tabstop was super annoying
