@@ -22,8 +22,8 @@ Plug 'tpope/vim-sleuth'
 
 Plug 'kana/vim-submode'
 Plug 'wellle/targets.vim'
+Plug 'pedrohdz/vim-yaml-folds'
 
-Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
 
