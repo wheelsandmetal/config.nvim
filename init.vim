@@ -95,7 +95,7 @@ function! ExecuteMacroOverVisualRange()
 endfunction
 
 " Look for tags file up and up and up ...
-set tags=./TAGS,TAGS;
+set tags=./TAGS,TAGS,./tags,tags;
 
 " }}}
 
