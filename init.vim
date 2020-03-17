@@ -131,9 +131,6 @@ nnoremap k gk
 nnoremap gj j 
 nnoremap gk k
 
-" Make tabs appear as 4 spaces, sleuth does the rest
-set tabstop=4
-
 " Quickly open .vimrc
 nnoremap <leader>cfv :e $MYVIMRC<cr>
 
@@ -185,6 +182,9 @@ nnoremap + *N
 " Change word under cursor
 nnoremap c* *Ncgn
 nnoremap c# #NcgN
+
+setg ts=4
+set ts=4
 
 " }}}
 
